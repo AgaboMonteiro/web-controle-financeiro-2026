@@ -105,20 +105,25 @@ function somaAoSaldo(transacao){
 }
 
 
-// ALTERAÇÃO: função responsável por gerar IDs incrementais.
-// O primeiro ID será 0.
-// Depois serão 1, 2, 3...
-// Mesmo que uma transação seja excluída, o próximo ID
-// será maior que todos os IDs existentes.
-function gerarId() {//gerarid
+function gerarId() { 
+    // Cria a função para gerar o próximo ID.
 
-    if (transacoesSalvas.length === 0) {
-        return 0;
-    }
+    let maiorId = -1; 
+    // Guarda o maior ID encontrado.
 
-    return Math.max(
-        ...transacoesSalvas.map(transacao => transacao.id)
-    ) + 1;
+    for (let i = 0; i < transacoesSalvas.length; i++) { 
+        // Percorre todas as transações.
+
+        if (transacoesSalvas[i].id > maiorId) { 
+            // Verifica se o ID atual é maior.
+
+            maiorId = transacoesSalvas[i].id; 
+            // Atualiza o maior ID.
+        } 
+    } 
+
+    return maiorId + 1; 
+    // Retorna o maior ID + 1.
 }
 
 
